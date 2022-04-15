@@ -1,0 +1,37 @@
+@model List<coretest.Models.MyModel>
+
+    <style>
+        body{
+            background-image: linear-gradient(to right, red , yellow);
+
+
+        }
+
+
+    </style>
+    <body>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>ID</th>
+            <TH>NAME</TH>
+            <TH>EMAIL</TH>
+            <TH>CITY</TH>
+            <TH>EDIT</TH>
+            <TH>DELETE</TH>
+</tr>
+ @foreach(var item in Model)
+    {
+        <tr>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.Email</td>
+        <td>@item.City</td>
+       
+          <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-dark">EDIT</a></td>
+          <td><a asp-controller="Home" asp-action="Del" asp-route-id="@item.Id"  class="btn btn-outline-danger">DELETE</a></td>
+   </tr>
+
+    }
+
+    </table>
+    </body>
