@@ -44,6 +44,7 @@ namespace coretest.Controllers
             mytestContext database = new mytestContext();
           //  MyModel mm = new MyModel();
             Mytable tt = new Mytable();
+            tt.Id=obj.Id;
             tt.Name= obj.Name;
             tt.Email=obj.Email;
             tt.City = obj.City;
@@ -55,7 +56,7 @@ namespace coretest.Controllers
             }
             else
             {
-                database.Entry(tt).State= Microsoft.EntityFrameworkCore.EntityState.Modified;
+                database.Entry(tt).State= EntityState.Modified;
                 database.SaveChanges();
             }
 
@@ -76,14 +77,15 @@ namespace coretest.Controllers
         public IActionResult Edit(int id)
         {
             mytestContext database = new mytestContext();
-            Mytable tt = new Mytable();
-          //  MyModel mm = new MyModel();
+          //  Mytable tt = new Mytable();
+            MyModel mm = new MyModel();
             var editing = database.Mytables.Where(e => e.Id == id).FirstOrDefault();
-            tt.Name = editing.Name;
-            tt.Email = editing.Email;
-            tt.City=editing.City;
+            mm.Id = editing.Id;
+            mm.Name = editing.Name;
+            mm.Email = editing.Email;
+            mm.City = editing.City;
           
-            return View("Add",editing);
+            return View("Add",mm);
         }
 
     }
